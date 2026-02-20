@@ -16,10 +16,10 @@ void aggiungi( prodotto x, prodotto v[], int d)
 {	
 	cout << "inserisci la categoria \n";
 	cin >> x.categoria;
-	cout << "inserisci il nome \n";
-	cin >> x.nome;
 	cout << "inserisci il prezzo \n";
 	cin >> x.prezzo;
+	cout << "inserisci il nome \n";
+	cin >> x.nome;
 	v[d] = x;
 }
 
@@ -28,9 +28,10 @@ void visualizza ( prodotto v[], int d)
 {
 	for( int i = 0; i < d; i++)
 	{
-		cout <<" il nome e' " << v[i].nome<<endl;
-		cout <<" il prezzo e' " << v[i].prezzo<<endl;
-		cout <<" la categoria e' " << v[i].categoria<<endl;	
+		cout <<"\n prodotto " << i;
+		cout << " il nome e' " << v[i].nome << endl;
+		cout << " il prezzo e' " << v[i].prezzo << endl;
+		cout << " la categoria e' " << v[i].categoria << endl;	
 	}
 	
 }
@@ -64,14 +65,14 @@ int opzione;
 prodotto x;
 	do{
 		//visualizzazione voci
-		cout<<"1 - aggiungi \n";
+		cout<< "\n \n1 - aggiungi \n";
 		//altre voci
-		cout<<"2 - visualizza \n";
-		cout<<"3 - cerca \n";
-		cout<<"4 - cancella \n";
-		cout<<"5 - modifica \n";
-		cout<<"0 - finisce il programma \n";
-		cin>>opzione;
+		cout<< "2 - visualizza \n";
+		cout<< "3 - cerca \n";
+		cout<< "4 - cancella \n";
+		cout<< "5 - modifica \n";
+		cout<< "0 - finisce il programma \n";
+		cin >> opzione;
 		switch(opzione)
 		{
 			case 1:		//operazione 1
