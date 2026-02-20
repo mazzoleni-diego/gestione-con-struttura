@@ -11,10 +11,10 @@ struct prodotto
 	string categoria;
 };
 
-
+// aggiunge variabile all array e aumenta la dimensione dell array
 void aggiungi( prodotto x, prodotto v[], int d)
 {
-	
+	v[d] = x;
 }
 
 
@@ -47,42 +47,48 @@ bool modifica( prodotto x, prodotto v[], int d)
 int main()
 {
 prodotto supermercato[100];
-int d=sizeof(supermercato)/sizeof(supermercato[0]);
+int d=0;
 int opzione;
 prodotto x;
 	do{
 		//visualizzazione voci
-		cout<<"1 - aggiungi";
+		cout<<"1 - aggiungi \n";
 		//altre voci
-		cout<<"2 - visualizza";
-		cout<<"3 - cerca";
-		cout<<"4 - cancella";
-		cout<<"5 - modifica";
-		cout<<"0 - finisce il programma";
+		cout<<"2 - visualizza \n";
+		cout<<"3 - cerca \n";
+		cout<<"4 - cancella \n";
+		cout<<"5 - modifica \n";
+		cout<<"0 - finisce il programma \n";
 		cin>>opzione;
 		switch(opzione)
 		{
-			case 1://operazione 1
-			    
+			case 1:		//operazione 1
+				cout << "inserisci la categoria \n";
+			    cin >> x.categoria;
+			    cout << "inserisci il nome \n";
+			    cin >> x.nome;
+			    cout << "inserisci il prezzo \n";
+			    cin >> x.prezzo;
 				aggiungi(x, supermercato, d);
+				d++;
 				break;
 				
-			case 2://operazione 2
+			case 2:		//operazione 2
 			
 				visualizza(supermercato, d);
 				break;
 					
-			case 3://operazione 3
+			case 3:		//operazione 3
 			
 				cerca(x, supermercato, d);
 				break;
 				
-			case 4://operazione 4
+			case 4:		//operazione 4
 			
 				cancella(x, supermercato, d);
 				break;
 					
-			case 5://operazione 5
+			case 5:		//operazione 5
 			
 				modifica(x, supermercato, d);
 				break;
@@ -91,6 +97,7 @@ prodotto x;
 		}
 		
 	}while(opzione!=0);
+
 
 
     return 0;
