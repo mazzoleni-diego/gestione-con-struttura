@@ -14,12 +14,6 @@ struct prodotto
 // aggiunge variabile all array e aumenta la dimensione dell array
 void aggiungi( prodotto x, prodotto v[], int d)
 {	
-	cout << "inserisci la categoria \n";
-	cin >> x.categoria;
-	cout << "inserisci il prezzo \n";
-	cin >> x.prezzo;
-	cout << "inserisci il nome \n";
-	cin >> x.nome;
 	v[d] = x;
 }
 
@@ -39,6 +33,11 @@ void visualizza ( prodotto v[], int d)
 
 int cerca( prodotto x, prodotto v[], int d)
 {
+	for( int i = 0; i < d; d++)
+	{
+		if(v[i] = x)
+		
+	}
 	
 }
 
@@ -76,12 +75,19 @@ prodotto x;
 		switch(opzione)
 		{
 			case 1:		//operazione 1
+				cout << "inserisci la categoria \n";
+				cin >> x.categoria;
+				cout << "inserisci il prezzo \n";
+				cin >> x.prezzo;
+				cout << "inserisci il nome \n";
+				cin >> x.nome;
 				aggiungi(x, supermercato, d);
 				d++;
 				break;
 				
 			case 2:		//operazione 2
-			
+				cout << "inserisci il nome del prodotto da cercare ";
+				cin >> x.nome;
 				visualizza(supermercato, d);
 				break;
 					
