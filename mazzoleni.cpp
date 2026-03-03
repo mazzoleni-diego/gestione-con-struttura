@@ -43,9 +43,15 @@ void cerca( prodotto x, prodotto v[], int d)
 }
 
 
-bool cancella( prodotto x, prodotto v[], int d)
+void cancella( prodotto x, prodotto v[], int d)
 {
-	return false;
+		for( int i = 0; i < d; i++)
+	{
+		if(v[i].nome == x.nome && v[i].prezzo == x.prezzo && v[i].categoria == x.categoria)
+		{
+			
+		}
+	}
 }
 
 bool modifica( prodotto x, prodotto v[], int d)
@@ -66,7 +72,6 @@ prodotto x;
 	do{
 		//visualizzazione voci
 		cout<< "\n \n1 - aggiungi \n";
-		//altre voci
 		cout<< "2 - visualizza \n";
 		cout<< "3 - cerca \n";
 		cout<< "4 - cancella \n";
@@ -102,7 +107,13 @@ prodotto x;
 				break;
 				
 			case 4:		//operazione 4
-			
+				cout << "inserisci il prodotto da cancellare:\n";
+				cout << "inserisci la categoria \n";
+				cin >> x.categoria;
+				cout << "inserisci il prezzo \n";
+				cin >> x.prezzo;
+				cout << "inserisci il nome \n";
+				cin >> x.nome;
 				cancella(x, supermercato, d);
 				break;
 					
