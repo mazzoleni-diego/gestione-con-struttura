@@ -33,9 +33,12 @@ void visualizza ( prodotto v[], int d)
 
 int cerca( prodotto x, prodotto v[], int d)
 {
-	for( int i = 0; i < d; d++)
+	for( int i = 0; i < d; i++)
 	{
-		if(v[i] = x)
+		if(v[i].nome == x.nome && v[i].prezzo == x.prezzo && v[i].categoria == x.categoria)
+		{
+			cout << "il prodotto e' nella posizione: " << i << endl;
+		}
 		
 	}
 	
@@ -86,13 +89,17 @@ prodotto x;
 				break;
 				
 			case 2:		//operazione 2
-				cout << "inserisci il nome del prodotto da cercare ";
-				cin >> x.nome;
 				visualizza(supermercato, d);
 				break;
 					
 			case 3:		//operazione 3
-			
+				cout << "inserisci il prodotto da cercare:\n";
+				cout << "inserisci la categoria \n";
+				cin >> x.categoria;
+				cout << "inserisci il prezzo \n";
+				cin >> x.prezzo;
+				cout << "inserisci il nome \n";
+				cin >> x.nome;
 				cerca(x, supermercato, d);
 				break;
 				
