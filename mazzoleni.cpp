@@ -31,7 +31,7 @@ void visualizza ( prodotto v[], int d)
 }
 
 
-int cerca( prodotto x, prodotto v[], int d)
+void cerca( prodotto x, prodotto v[], int d)
 {
 	for( int i = 0; i < d; i++)
 	{
@@ -39,9 +39,7 @@ int cerca( prodotto x, prodotto v[], int d)
 		{
 			cout << "il prodotto e' nella posizione: " << i << endl;
 		}
-		
 	}
-	
 }
 
 
