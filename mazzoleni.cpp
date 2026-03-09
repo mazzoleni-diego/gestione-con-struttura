@@ -1,135 +1,150 @@
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-
+//strutture e funzioni
 struct prodotto
 {
 	string nome;
-	float prezzo;
 	string categoria;
+	float prezzo;	
 };
 
-// aggiunge variabile all array e aumenta la dimensione dell array
-void aggiungi( prodotto x, prodotto v[], int d)
-{	
-	v[d] = x;
+void aggiungi(prodotto pp, prodotto ele[],int &dim)
+{
+	ele[dim]=pp;
+	dim++;	
 }
 
-
-void visualizza ( prodotto v[], int d)
+string visualizza(prodotto ele[], int dim)
 {
-	for( int i = 0; i < d; i++)
-	{
-		cout <<"\n prodotto " << i;
-		cout << " il nome e' " << v[i].nome << endl;
-		cout << " il prezzo e' " << v[i].prezzo << endl;
-		cout << " la categoria e' " << v[i].categoria << endl;	
+	string s;
+	for(int i=0;i<dim;i++){
+		s+=ele[i].nome+"\t";
+		s+=ele[i].categoria+"\t";
+		s+=to_string(ele[i].prezzo)+"\n";
 	}
-	
+	return s;
 }
 
-
-void cerca( prodotto x, prodotto v[], int d)
+int cerca(prodotto pp, prodotto ele[], int dim)
 {
-	for( int i = 0; i < d; i++)
+	for(int i = 0; i < dim; i++)
 	{
-		if(v[i].nome == x.nome)
+		if(ele[i].nome == pp.nome)
 		{
-			cout << "il prodotto e' nella posizione: " << i << endl;
+			return i; //dice la posizione se trova il prodotto
 		}
 	}
+	
+	return -1; //se non lo trova
 }
 
-
-bool cancella( prodotto x, prodotto v[], int d)
+bool cancella(prodotto pp, prodotto ele[], int &dim)
 {
-	for( int i = 0; i < d; i++)
+	int pos = cerca(pp, ele, dim);
+	
+	if(pos == -1)
+		return false;
+
+	for(int i = pos; i < dim-1; i++)
 	{
-		if(v[i].nome == x.nome)
-		{
-			for( int j = i; j < d; j++)
-			{
-				v[j] = v[j+1];
-			}			
-			return true;
-		}		
-		else
-		{
-			d++;
-			return false;	
-		}	
+		ele[i] = ele[i+1];
 	}
+	
+	dim--;
+	
+	return true;
 }
 
-void modifica( prodotto x, prodotto v[], int d)
+bool modifica(prodotto pp, prodotto ele[], int dim)
 {
+	int pos = cerca(pp, ele, dim);
+	
+	if(pos == -1)
+		return false;
 
+	cout << "inserisci il nuovo nome: ";
+	cin >> ele[pos].nome;
+	
+	cout << "inserisci la nuova categoria: ";
+	cin >> ele[pos].categoria;
+	
+	cout << "inserisci il nuovo prezzo: ";
+	cin >> ele[pos].prezzo;
+	
+	return true;
 }
-	
-	
-	
-	
-	
+
+
 int main()
 {
-prodotto supermercato[100];
-int d=0;
-int opzione;
-prodotto x;
-	do{
-		//visualizzazione voci
-		cout<< "\n \n1 - aggiungi \n";
-		cout<< "2 - visualizza \n";
-		cout<< "3 - cerca \n";
-		cout<< "4 - cancella \n";
-		cout<< "5 - modifica \n";
-		cout<< "0 - finisce il programma \n";
-		cin >> opzione;
-		switch(opzione)
+	//dichiarazioni delle variabili
+	prodotto  p;
+	prodotto elenco[100];
+	int n=0;
+	//variabile di appoggio per la funzione cerca
+	int app;
+	
+	//struttura a menù
+	int scelta;
+	do
+	{
+		//visualizzazione opzioni
+		cout<<"\n1 - Aggiunta"<<endl;
+		cout<<"2 - Visualizzazione"<<endl;
+		cout<<"3 - ricerca"<<endl;
+		cout<<"4 - cancellazione"<<endl;
+		cout<<"5 - modifica"<<endl;
+		cout<<"0 - Fine programma"<<endl;
+		//scelta dell'opzione
+		cout<<"scegli l'opzione: ";
+		
+		cin>>scelta;
+		fflush(stdin);
+		
+		//elaborazione scelta
+		switch(scelta)
 		{
-			case 1:		//operazione 1
-				cout << "inserisci la categoria \n";
-				cin >> x.categoria;
-				cout << "inserisci il prezzo \n";
-				cin >> x.prezzo;
-				cout << "inserisci il nome \n";
-				cin >> x.nome;
-				aggiungi(x, supermercato, d);
-				d++;
+			case 1:	//operazione 1
+				cout<<"Inserisci il nome ";
+				cin >> p.nome;
+				cout<<"Inserisci la categoria ";
+				cin >> p.categoria;
+				cout<<"Inserisci il prezzo ";
+				cin>>p.prezzo;
+				aggiungi(p,elenco,n);
+				break;
+			case 2:	//operazione 2	
+			    cout<<visualizza(elenco,n);
 				break;
 				
-			case 2:		//operazione 2
-				visualizza(supermercato, d);
-				break;
-					
 			case 3:		//operazione 3			
 				cout << "inserisci il nome del prodotto \n";
-				cin >> x.nome;
-				cerca(x, supermercato, d);
+				cin >> p.nome;
+				app = cerca(p, elenco, n);
+				if(app == -1)
+				    cout << "prodotto non trovato";
+				else
+				    cout << "prodotto trovato in posizione: " << app << endl;
 				break;
 				
 			case 4:		//operazione 4
 
 				cout << "inserisci il nome del prodotto \n";
-				cin >> x.nome;
-				cancella(x, supermercato, d);
-				d--;
+				cin >> p.nome;
+				cancella(p, elenco, n);
 				break;
-					
+			
 			case 5:		//operazione 5
 			
-				modifica(x, supermercato, d);
+			    cout << "inserisci il nome del prodotto \n";
+				cin >> p.nome;
+				modifica(p, elenco, n);
 				break;
-				
-				
 		}
-		
-	}while(opzione!=0);
-
-
-
-
-    return 0;
+	}
+	while (scelta!=0);
+	
+    return 0;		
 }
